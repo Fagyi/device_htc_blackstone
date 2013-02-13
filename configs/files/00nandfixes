@@ -1,0 +1,63 @@
+#!/system/bin/sh
+# 
+# Created for Touchscreen fixes and sdcard mounting problem for Blackstone NAND
+# Fagyi
+#
+# Ts Calibration and varius fixes
+
+PATH=/sbin:/system/sbin:/bin:/system/bin:/system/xbin:/system/xbin/bb:/data/local/bin
+
+# fix OpenGL-ES permissions
+chmod 660 /dev/msm_hw3dc      # should be 666 for HWA ( black screen via 3d apps & games), we just use software rendering which working at the moment
+chmod 660 /dev/msm_hw3dm
+
+# Bind-mount /sdcard/.android_secure to /mnt/secure/asec for native Apps2SD
+if [ ! -d /mnt/sdcard/.android_secure ] ; then
+	mkdir /mnt/sdcard/.android_secure
+fi
+mount --bind /sdcard/.android_secure /mnt/secure/asec
+
+# Touchscreen calibration
+for i in /sys/class/input/input* ; do
+        if [ "`cat $i/name`" = "tssc-manager" ] ; then
+                touchscreendir=$i
+                echo "Touchscreen device directory is $i"
+        fi
+done
+
+cp /system/etc/ts-calibration /data/
+
+if [ -f /data/ts-calibration ] ; then
+        echo "Using Saved Touchscreen Calibration"
+        echo 128,128,1903,128,128,1907,1903,1907,1024,1024 > $touchscreendir/calibration_screen
+        cat /data/ts-calibration > $touchscreendir/calibration_points
+fi
+
+# Symlink cache/download to the sdcard/cache-download
+if [ ! -d /cache/download ] ; then
+	echo " ok "
+else
+	rmdir /cache/download
+fi	
+if [ ! -d /mnt/sdcard/cache-download ] ; then
+	mkdir /mnt/sdcard/cache-download
+fi
+cd /cache
+ln -s /mnt/sdcard/cache-download download
+
+# Internet speed tweaks,vm management tweaks, and battery tweaks 
+echo 2048 > /sys/devices/virtual/bdi/179:0/read_ahead_kb
+echo 7 > /proc/sys/vm/laptop_mode
+echo 90 > /proc/sys/vm/dirty_ratio
+echo 60000 > /proc/sys/vm/dirty_expire_centisecs
+echo 60000 > /proc/sys/vm/dirty_writeback_centisecs
+
+#Smooth scroll
+echo 60 >/sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold
+# Camera stuff
+mkdir /dev/msm_camera
+mknod /dev/msm_camera/control0 c 250 0
+mknod /dev/msm_camera/config0 c 250 1
+mknod /dev/msm_camera/frame0 c 250 2
+
+
