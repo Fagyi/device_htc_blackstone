@@ -21,9 +21,6 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
-USE_CAMERA_STUB := false
-BOARD_USE_FROYO_LIBCAMERA := true
-
 JS_ENGINE := v8
 
 # inherit from the proprietary version
@@ -32,6 +29,7 @@ JS_ENGINE := v8
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_CPU_ABI := armeabi
 TARGET_ARCH_VARIANT := armv6j
+TARGET_BOARD_PLATFORM_GPU := qcom
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
@@ -39,7 +37,6 @@ TARGET_NO_RADIOIMAGE := true
 # Audio
 TARGET_PROVIDES_LIBAUDIO := hardware/msm7k/libaudio_wince
 BUILD_LIB_HTC_ACOUSTIC_WINCE := true
-
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
@@ -53,18 +50,19 @@ WIFI_FIRMWARE_LOADER        := "wlan_loader"
 
 BOARD_HAVE_BLUETOOTH := true
 
-# OpenGL drivers config file path
-BOARD_EGL_CFG := device/htc/blackstone/configs/files/egl.cfg
-
-#libsurfaceflinger to avoid Draw Texture Extenstion
-BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
-BOARD_NO_RGBX_8888 := true
-BOARD_NO_GL2 := true
-BOARD_GL_TEX_POW2_DIMENSION_REQUIRED := true
-TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
+BOARD_VENDOR_USE_AKMD := true
+USE_PV_WINDOWS_MEDIA := false	
 BUILD_WITH_FULL_STAGEFRIGHT := true
+# Remove when we have camera support.
+USE_CAMERA_STUB := false
+# Our hardware is not OpenGLES-2 capable
+BOARD_NO_GL2 := true	
+BOARD_GL_TEX_POW2_DIMENSION_REQUIRED := true
+#BOARD_HAS_LIMITED_EGL := true
 
-BOARD_USE_KINETO_COMPATIBILITY := true
+# Enable legacy graphics code in surfaceflinger, for performance improvement
+TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
+BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
 
 # Kernel options
 BOARD_KERNEL_BASE := 0x10000000
@@ -90,6 +88,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += TARGET_BOOTLOADER_BOARD_NAME=blackstone
 
 # The size of a block that can be marked bad.
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+# OpenGL drivers config file path
+BOARD_EGL_CFG := device/htc/blackstone/configs/files/egl.cfg
+
+# Prelink settings
+PRODUCT_SPECIFIC_DEFINES += TARGET_PRELINKER_MAP=\$(TOP)/vendor/cyanogen/prelink-linux-arm-hero.map
 
 
 # cat /proc/mtd      Corrected for HTC TOUCH HD aka Blackstone, but building problem with it.
