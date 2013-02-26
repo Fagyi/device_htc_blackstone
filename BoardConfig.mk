@@ -53,8 +53,10 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_VENDOR_USE_AKMD := true
 USE_PV_WINDOWS_MEDIA := false	
 BUILD_WITH_FULL_STAGEFRIGHT := true
+
 # Remove when we have camera support.
 USE_CAMERA_STUB := false
+
 # Our hardware is not OpenGLES-2 capable
 BOARD_NO_GL2 := true	
 BOARD_GL_TEX_POW2_DIMENSION_REQUIRED := true
@@ -74,11 +76,6 @@ LOCAL_KERNEL := device/htc/blackstone/prebuilt_kernel/kernel
 BOARD_GPS_LIBRARIES := libgps
 BOARD_VENDOR_XDANDROID_GPS_HARDWARE := blackstone
 BOARD_GPS_LIBRARIES := gps.blackstone
-
-# Video Encoders
-BOARD_USES_QCOM_LIBS := true
-USE_PV_WINDOWS_MEDIA := false
-BUILD_PV_VIDEO_ENCODERS := 1
 
 # Ota updates
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
