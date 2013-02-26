@@ -25,19 +25,26 @@ PRODUCT_LOCALES += hdpi
 
 PRODUCT_PACKAGES += \
     Launcher2 \
-    VoiceDialer \
-    libOmxCore \
-    libmm-omxcore \
-    libqcomm_omx \
-    libstagefrighthw \
+    VoiceDialer
+
+# Libraries
+PRODUCT_PACKAGES += \
+#    libOmxCore \
+#    libmm-omxcore \
+#    libqcomm_omx \
+#    libstagefrighthw
+    libhtc_acoustic
+
+# Drivers
+PRODUCT_PACKAGES += \
     copybit.msm7k \
     gralloc.blackstone \
     lights.blackstone \
     sensors.blackstone \
     gps.blackstone \
-    libhtc_acoustic \
     libhtcgeneric-ril \
     libcamera \
+    librs_jni \
     microp-keypad.kcm \
     vold.fstab
 
