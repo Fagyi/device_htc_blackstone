@@ -72,8 +72,8 @@ PRODUCT_COPY_FILES += \
     device/htc/blackstone/configs/files/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/htc/blackstone/configs/files/ts-calibration:system/etc/ts-calibration \
     device/htc/blackstone/configs/files/01_qcomm_omx.cfg:system/etc/01_qcomm_omx.cfg \
-    device/htc/blackstone/configs/files/wpa_supplicant:system/bin/wpa_supplicant \
-    device/htc/blackstone/configs/files/wpa_cli:system/bin/wpa_cli
+#    device/htc/blackstone/configs/files/wpa_supplicant:system/bin/wpa_supplicant
+#    device/htc/blackstone/configs/files/wpa_cli:system/bin/wpa_cli
 #    device/htc/blackstone/configs/files/wlan_loader:system/bin/wlan_loader
 
 
