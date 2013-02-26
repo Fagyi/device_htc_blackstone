@@ -73,8 +73,8 @@ PRODUCT_COPY_FILES += \
     device/htc/blackstone/configs/files/ts-calibration:system/etc/ts-calibration \
     device/htc/blackstone/configs/files/01_qcomm_omx.cfg:system/etc/01_qcomm_omx.cfg \
     device/htc/blackstone/configs/files/wpa_supplicant:system/bin/wpa_supplicant \
-    device/htc/blackstone/configs/files/wpa_cli:system/bin/wpa_cli \
-    device/htc/blackstone/configs/files/wlan_loader:system/bin/wlan_loader
+    device/htc/blackstone/configs/files/wpa_cli:system/bin/wpa_cli
+#    device/htc/blackstone/configs/files/wlan_loader:system/bin/wlan_loader
 
 
 # Some init scripts
@@ -98,7 +98,7 @@ PRODUCT_COPY_FILES += \
 	device/htc/blackstone/configs/files/bcm4325.hcd:/system/etc/firmware/bcm4325.hcd \
 	device/htc/blackstone/configs/files/BCM4325_apsta.bin:/system/etc/firmware/BCM4325_apsta.bin \
 	device/htc/blackstone/configs/files/brf6300.bin:/system/etc/firmware/brf6300.bin \
-        device/htc/blackstone/configs/files/tiwlan.ini:/system/etc/wifi/tiwlan.ini \
+#        device/htc/blackstone/configs/files/tiwlan.ini:/system/etc/wifi/tiwlan.ini
 	device/htc/blackstone/configs/files/Fw1251r1c.bin:/system/etc/wifi/Fw1251r1c.bin
 
 # Vold config
