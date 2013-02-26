@@ -29,9 +29,9 @@ PRODUCT_PACKAGES += \
 
 # Libraries
 PRODUCT_PACKAGES += \
-#    libOmxCore \
-#    libmm-omxcore \
-#    libqcomm_omx \
+    wlan_loader \
+    tiwlan.ini \
+    libOmxCore \
 #    libstagefrighthw
     libhtc_acoustic
 
